@@ -1,10 +1,13 @@
 class ProductsController < ApplicationController
     skip_before_action :verify_authenticity_token
-
+ 
     def index
-        @products = Product.all
         @id_admin = params[:id_admin]
-        #render json: {"products": products}
+        if @id_admin.nil?
+            redirect_to "/", notice: "Usuário sem permissão."
+        else
+            @products = Product.all
+        end
     end
 
     def create

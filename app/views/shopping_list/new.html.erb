@@ -1,4 +1,4 @@
-<p style="color: green"><%= notice %></p>
+<p style="color: red"><%= notice %></p>
 <style>
     table{
         border: 1px solid #ccc;
@@ -16,10 +16,6 @@
 <fieldset>
   <legend>Cadastra nova receita</legend>
   <form action="/shopping_list" method="post">
-    <div>
-      <input type="hidden" id="id_user" name="id_user" value="<%= @user.id %>">
-    </div>
-    <br>
     <div>
       <label for="id_list"> Número da lista: </label>
       <input type="text" id="id_list" name="id_list">

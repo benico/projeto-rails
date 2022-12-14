@@ -33,7 +33,7 @@
             <% if user.admin == true %>
                 <td></td>
             <% else %>
-                <td><%= button_to "Excluir", "/user/#{user.id}" , params: { id_admin: @id_admin  }, method: :delete %> </td>
+                <td><%= button_to "Excluir", "/user/#{user.id}" , method: :delete %> </td>
             <% end %>
         </tr>
         <% end %>

@@ -1,5 +1,5 @@
 <p style="color: green"><%= notice %></p>
-<%= button_to "Voltar", user_path, params: { id: @user.id  }, method: :get %>
+<%= button_to "Voltar", "/user/#{@user.id}", method: :get %>
 <style>
     table{
         border: 1px solid #ccc;
@@ -40,4 +40,4 @@
     <% j=j+1 %>
     <p>----------------------------------------</p>
 <% end %>
-<%= button_to "Cadastra nova lista", new_shopping_list_path, params: { id_user: @user.id  }, method: :get %>
+<%= button_to "Cadastra nova lista", new_shopping_list_path, method: :get %>
