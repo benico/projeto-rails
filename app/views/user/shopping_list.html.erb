@@ -1,0 +1,43 @@
+<p style="color: green"><%= notice %></p>
+<%= button_to "Voltar", user_path, params: { id: @user.id  }, method: :get %>
+<style>
+    table{
+        border: 1px solid #ccc;
+    }
+    table tr th {
+        border: 1px solid #ccc;
+        font-weight: bold;
+    }
+    table tr td {
+        border: 1px solid #ccc;
+    }
+</style>
+<% j=0 %>
+<p>----------------------------------------</p>
+<% for i in 1..@shopping_list.length%>
+    <h1> Lista <%= @n_list[j].id %> </h1>
+    <table>
+        <tr>
+            <th>Lista</th>
+            <th>Produto</th>
+            <th>Valor</th>
+        </tr>
+        <% @shopping_list[j].each do |row|%>
+        <tr>
+            <td><%= row.id %></td>
+            <td><%= row.name %></td>
+            <td><%= row.value %></td>
+        </tr>
+        <% end %>
+    </table>
+    <br>
+    <form action="/shopping_list/<%= @n_list[j].id %>" method="delete">
+        <div>
+            <input type="submit" value="Excluir">
+        </div>
+    </form>     
+    <br>
+    <% j=j+1 %>
+    <p>----------------------------------------</p>
+<% end %>
+<%= button_to "Cadastra nova lista", new_shopping_list_path, params: { id_user: @user.id  }, method: :get %>

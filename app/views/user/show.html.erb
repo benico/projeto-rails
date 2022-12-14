@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+<h1> <%= @user.first_name %> <%= @user.last_name %> </h1>
+<p>Idade: <%= @user.age %></p>
+<p>Senha: <%= @user.password %></p>
+<% if @user.admin? %>
+    <p>-----------------Usuário Administrador-------------------</p>
+    <%= button_to "Cadastro de produtos", admin_products_path, params: { id_admin: @user.id  },method: :get %>
+    <br>
+    <%= button_to "Usuários", user_index_path, params: { id_admin: @user.id  },method: :get %>
+    <p>---------------------------------------------------------</p>
+<% end %>
+
+<div>
+  <a href="/user/<%= @user.id %>/edit"> Alterar </a> |
+  <a href="/user/<%= @user.id %>/shopping_list"> Lista de Compras </a> |
+  <a href="/"> Sair </a>   
+</div>

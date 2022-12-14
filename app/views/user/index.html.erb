@@ -1,0 +1,44 @@
+<p style="color: green"><%= notice %></p>
+<h1> Usuários </h1>
+<style>
+    table{
+        border: 1px solid #ccc;
+    }
+    table tr th {
+        border: 1px solid #ccc;
+        font-weight: bold;
+    }
+    table tr td {
+        border: 1px solid #ccc;
+    }
+</style>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Primeiro Nome</th>
+            <th>Segundo Nome</th>
+            <th>Idade</th>
+            <th>Senha</th>
+            <th>Admin</th>
+            <th></th>
+        </tr>
+        <% @users.each do |user|%>
+        <tr>
+            <td><%= user.id %></td>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.age %></td>
+            <td><%= user.password %></td>
+            <td><%= user.admin %></td>
+            <% if user.admin == true %>
+                <td></td>
+            <% else %>
+                <td><%= button_to "Excluir", "/user/#{user.id}" , params: { id_admin: @id_admin  }, method: :delete %> </td>
+            <% end %>
+        </tr>
+        <% end %>
+    </table>
+    <br>
+</div><%= button_to "Voltar", "/user/#{@id_admin}", method: :get  %>
+
+

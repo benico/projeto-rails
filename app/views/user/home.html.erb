@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+<body>
+    <div>
+        <h1>Login</h1>
+        <form action="/user/login" method="get">
+            <div>
+                <label for="first_name"> Primeiro nome: </label>
+                <input type="text" id="first_name" name="first_name">
+            </div>
+            <br>
+            <div>
+                <label for="password"> Senha: </label>
+                <input type="password" id="password" name="password">
+            </div>
+            <br>
+            <div>
+                <input type="submit" value="Login">
+            </div>
+        </form>
+        <p>--------------------------</p>
+        <div>
+            <%= button_to "Sign Up", new_user_path, method: :get  %>    
+        </div>    
+    </div>
+</body>
