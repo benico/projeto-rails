@@ -12,7 +12,7 @@ class ShoppingListController < ApplicationController
         user = UserAuthenticated.last
         id_user = user.id_user_authenticated
         id_list = params[:id_list]
-        #SEPARAR O ID DOS PRODUTOS QUE VEM POR PARAMS
+        #SEPARAR O ID DOS PRODUTOS QUE VEM POR PARAMS.
         i = 0
         j = 0
         params_field = []
