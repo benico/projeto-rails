@@ -4,7 +4,7 @@ class UserController < ApplicationController
     def index
         @id_admin = params[:id_admin]
         if @id_admin.nil?
-            redirect_to "/", notice: "Usuário sem permissão."
+            redirect_to "/", notice: "Usuário sem permissão otario."
         else
             @users = User.all
         end
