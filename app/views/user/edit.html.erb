@@ -1,31 +1,33 @@
 <p style="color: red"><%= notice %></p>
-<fieldset>
-  <legend>Atualizar Cadastro</legend>
-  <form action="/user/<%= @user.id %>" method="put">
-    <div>
-      <label for="first_name"> Primeiro nome: </label>
-      <input type="text" id="first_name" name="first_name" value="<%= @user.first_name %>">
-    </div>
-    <br>
-    <div>
-      <label for="last_name"> Segundo nome: </label>
-      <input type="text" id="last_name" name="last_name" value="<%= @user.last_name %>">
-    </div>
-    <br>
-    <div>
-      <label for="age"> Idade: </label>
-      <input type="text" id="age" name="age" value="<%= @user.age %>">
-    </div>
-    <br>
-    <div>
-      <label for="password"> Senha: </label>
-      <input type="text" id="password" name="password" value="<%= @user.password %>">
-    </div>
-    <br>
-    <div>
-      <input type="submit" value="Atualizar">
-    </div>
-  </form>
-</fieldset>
-<br>
-<%= button_to "Voltar", user_path, params: { id: @user.id  }, method: :get %>
+
+<div>
+    <h1>Atualizar Cadastro</h1>
+    <%= form_with(model: @user)  do |form| %>
+        <div>
+            <%= form.label :first_name, "Primeiro nome:" %>
+            <br>
+            <%= form.text_field :first_name %>
+        </div>
+        <div>
+            <%= form.label :last_name, "Segundo nome:" %>
+            <br>
+            <%= form.text_field :last_name %>
+        </div>
+        <div>
+            <%= form.label :age, "Idade:" %>
+            <br>
+            <%= form.text_field :age %>
+        </div>
+        <div>
+            <%= form.label :password, "Senha:" %>
+            <br>
+            <%= form.text_field :password %>
+        </div>
+        <br>
+        <div>
+            <%= form.submit "Atualizar"%>
+        </div>
+    <% end %>
+</div>
+<p>-------------------------------------------------------</p>
+<%= button_to "Voltar", user_path(@user.id), method: :get %>

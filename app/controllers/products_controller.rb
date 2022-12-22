@@ -2,11 +2,17 @@ class ProductsController < ApplicationController
     skip_before_action :verify_authenticity_token
  
     def index
-        @id_admin = params[:id_admin]
-        if @id_admin.nil?
+        authenticated = UserAuthenticated.last
+        if authenticated.id_user_authenticated.nil?
             redirect_to "/", notice: "Usuário sem permissão."
         else
-            @products = Product.all
+            user = User.find(authenticated.id_user_authenticated)
+            if !user.admin
+                redirect_to "/", notice: "Usuário sem permissão."
+            else
+                @products = Product.all
+                @id_admin = user.id
+            end
         end
     end
 

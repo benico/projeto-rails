@@ -2,15 +2,22 @@ class UserController < ApplicationController
     skip_before_action :verify_authenticity_token
 
     def index
-        @id_admin = params[:id_admin]
-        if @id_admin.nil?
+        authenticated = UserAuthenticated.last
+        if authenticated.id_user_authenticated.nil?
             redirect_to "/", notice: "Usuário sem permissão."
         else
-            @users = User.all
+            user = User.find(authenticated.id_user_authenticated)
+            if !user.admin
+                redirect_to "/", notice: "Usuário sem permissão."
+            else
+                @users = User.all
+                @id_admin = user.id
+            end
         end
     end
 
     def new
+        @user = User.new
     end
 
     def create 
@@ -56,29 +63,27 @@ class UserController < ApplicationController
     end
 
     def update
-        user_fisrt_name = params[:first_name]
-        user_last_name = params[:last_name]
-        user_age = params[:age]
-        user_password = params[:password]
-        id_user = params[:id]
-        user_name = User.find_by(first_name: user_fisrt_name)
+        user_params = params.require(:user).permit(:first_name, :last_name, :age, :password)
+        user_id = params[:id]
+        user_name = User.find_by(first_name: user_params[:first_name])
 
-        if !user_name.nil?
-            redirect_to "/user/#{id_user}/edit", notice: "Usuário já cadastrado."
-        elsif user_fisrt_name == ""
-            redirect_to "/user/#{id_user}/edit", notice: "Preencha o campo 'Primeiro Nome:'."
-        elsif user_last_name == ""
-            redirect_to "/user/#{id_user}/edit", notice: "Preencha o campo 'Segundo Nome:'."
-        elsif user_age == ""
-            redirect_to "/user/#{id_user}/edit", notice: "Preencha o campo 'Idade:'."
-        elsif user_password == ""
-            redirect_to "/user/#{id_user}/edit", notice: "Digite uma senha."
+        if !user_name.nil? and user_name.id.to_i != user_id.to_i
+
+            redirect_to "/user/#{user_id}/edit", notice: "Usuário já cadastrado."
+        elsif user_params[:first_name] == ""
+            redirect_to "/user/#{user_id}/edit", notice: "Preencha o campo 'Primeiro Nome:'."
+        elsif user_params[:last_name] == ""
+            redirect_to "/user/#{user_id}/edit", notice: "Preencha o campo 'Segundo Nome:'."
+        elsif user_params[:age] == ""
+            redirect_to "/user/#{user_id}/edit", notice: "Preencha o campo 'Idade:'."
+        elsif user_params[:password] == ""
+            redirect_to "/user/#{user_id}/edit", notice: "Digite uma senha."
         else
-            user = User.find_by(id: id_user)
-            user.first_name = user_fisrt_name
-            user.last_name = user_last_name
-            user.age = user_age
-            user.password = user_password
+            user = User.find_by(id: user_id)
+            user.first_name = user_params[:first_name]
+            user.last_name = user_params[:last_name]
+            user.age = user_params[:age]
+            user.password = user_params[:password]
             user.save
             redirect_to "/user/#{user.id}", notice: "Atualização do usuário executada com suscesso."
         end

@@ -27,27 +27,27 @@
         </tr>
       <% end %>
 </table>
-<br>
-<fieldset>
-  <legend>Cadastrar produto</legend>
-  <form action="/products" method="post">
-    <div>
-      <label for="name"> Nome do produto: </label>
-      <input type="text" id="name" name="name">
-    </div>
-    <br>
-    <div >
-      <label for="value"> Valor: </label>
-      <input type="text" id="value" name="value">
-    </div>  
-    <br>
-    <input type="hidden" id="id_admin" name="id_admin" value="<%= @id_admin %>">
-    <div>
-      <input type="submit" value="Cadastrar">
-    </div>
-    
-  </form>
-</fieldset>
-<br>
-</div><%= button_to "Voltar", "/user/#{@id_admin}", method: :get  %>
+<p>-------------------------------------------------------</p>
+<div>
+    <h1>Cadastrar produto</h1>
+    <%= form_with url: products_path, method: :post do |form| %>
+        <div>
+            <%= form.hidden_field :id_admin, value: "#{@id_admin}" %>
+            <%= form.label :name, "Nome do Produto:" %>
+            <br>
+            <%= form.text_field :name %>
+        </div>
+        <div>
+            <%= form.label :value, "Valor:" %>
+            <br>
+            <%= form.text_field :value %>
+        </div>
+        <br>
+        <div>
+            <%= form.submit "Cadastrar"%>
+        </div>
+    <% end %>
+</div>
+<p>-------------------------------------------------------</p>
+</div><%= button_to "Voltar", user_path(@id_admin), method: :get  %>
 

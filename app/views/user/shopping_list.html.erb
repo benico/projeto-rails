@@ -1,5 +1,5 @@
 <p style="color: green"><%= notice %></p>
-<%= button_to "Voltar", "/user/#{@user.id}", method: :get %>
+<%= button_to "Voltar", user_path(@user.id), method: :get %>
 <style>
     table{
         border: 1px solid #ccc;
@@ -30,12 +30,8 @@
         </tr>
         <% end %>
     </table>
-    <br>
-    <form action="/shopping_list/<%= @n_list[j].id %>" method="delete">
-        <div>
-            <input type="submit" value="Excluir">
-        </div>
-    </form>     
+    <br>   
+    <%= button_to "Excluir", shopping_list_path(@n_list[j].id), method: :delete %>  
     <br>
     <% j=j+1 %>
     <p>----------------------------------------</p>

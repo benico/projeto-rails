@@ -4,14 +4,15 @@
 <p>Senha: <%= @user.password %></p>
 <% if @user.admin? %>
     <p>-----------------Usuário Administrador-------------------</p>
-    <%= button_to "Cadastro de produtos", admin_products_path, params: { id_admin: @user.id  },method: :get %>
+    <%= button_to "Cadastro de produtos", admin_products_path, method: :get %>
     <br>
-    <%= button_to "Usuários", user_index_path, params: { id_admin: @user.id  },method: :get %>
+    <%= button_to "Usuários", user_index_path, method: :get %>
     <p>---------------------------------------------------------</p>
 <% end %>
 
 <div>
-  <a href="/user/<%= @user.id %>/edit"> Alterar </a> |
-  <a href="/user/<%= @user.id %>/shopping_list"> Lista de Compras </a> |
-  <a href="/user/logout"> Sair </a>   
+  <%= link_to "Alterar", edit_user_path(@user.id) %> |
+  <%= link_to "Lista de Compras", shopping_list_user_path(@user.id) %> |
+  <%= link_to "Sair", user_logout_path %>  
 </div>
+

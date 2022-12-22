@@ -47,4 +47,4 @@
   </form>
 </fieldset>
 <br>
-<%= button_to "Voltar", "/user/#{@user.id}/shopping_list" , method: :get %>
+<%= button_to "Voltar", shopping_list_user_path(@user.id) , method: :get %>

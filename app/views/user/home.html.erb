@@ -1,24 +1,26 @@
 <p style="color: green"><%= notice %></p>
 <div>
     <h1>Login</h1>
-    <form action="/user/login" method="get">
+    <%= form_with url: user_login_path, method: :get  do |form| %>
         <div>
-            <label for="first_name"> Primeiro nome: </label>
-            <input type="text" id="first_name" name="first_name">
+            <%= form.label :first_name, "Primeiro nome:" %>
+            <br>
+            <%= form.text_field :first_name %>
+        </div>
+
+        <div>
+            <%= form.label :password, "Senha:" %>
+            <br>
+            <%= form.password_field :password %>
         </div>
         <br>
         <div>
-            <label for="password"> Senha: </label>
-            <input type="password" id="password" name="password">
+            <%= form.submit "Entrar"%>
         </div>
-        <br>
-        <div>
-            <input type="submit" value="Login">
-        </div>
-    </form>
-    <p>--------------------------</p>
+    <% end %>
+    <p>-------------------------------------------------------</p>
     <div>
-        <%= button_to "Sign Up", new_user_path, method: :get  %>    
+        <%= button_to "Cadastrar", new_user_path, method: :get  %>    
     </div>    
 </div>
 

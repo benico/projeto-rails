@@ -33,12 +33,12 @@
             <% if user.admin == true %>
                 <td></td>
             <% else %>
-                <td><%= button_to "Excluir", "/user/#{user.id}" , method: :delete %> </td>
+                <td><%= button_to "Excluir", user_path(user.id), method: :delete %> </td>
             <% end %>
         </tr>
         <% end %>
     </table>
     <br>
-</div><%= button_to "Voltar", "/user/#{@id_admin}", method: :get  %>
+</div><%= button_to "Voltar", user_path(@id_admin), method: :get  %>
 
 
