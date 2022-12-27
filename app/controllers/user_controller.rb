@@ -25,6 +25,7 @@ class UserController < ApplicationController
         user_last_name = params[:last_name]
         user_age = params[:age]
         user_password = params[:password]
+        user_admin = params[:admin]
         user_name = User.find_by(first_name: user_fisrt_name)
 
         if !user_name.nil?
@@ -38,7 +39,7 @@ class UserController < ApplicationController
         elsif user_password == ""
             redirect_to "/user/new", notice: "Digite uma senha."
         else
-            user = User.create(first_name: user_fisrt_name,last_name: user_last_name,age: user_age,password: user_password,admin: false)
+            user = User.create(first_name: user_fisrt_name,last_name: user_last_name,age: user_age,password: user_password,admin: user_admin)
             redirect_to "/", notice: "Cadastro realizado com sucesso."
         end
     end

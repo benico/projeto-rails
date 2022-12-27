@@ -27921,3 +27921,221 @@ Processing by UserController#home as HTML
 Completed 200 OK in 48ms (Views: 34.2ms | ActiveRecord: 0.0ms | Allocations: 4887)
 
 
+Started GET "/" for ::1 at 2022-12-27 13:43:10 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (51.9ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by UserController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering user/home.html.erb within layouts/application
+  Rendered user/home.html.erb within layouts/application (Duration: 318.3ms | Allocations: 3639)
+  Rendered layout layouts/application.html.erb (Duration: 3062.8ms | Allocations: 40335)
+Completed 200 OK in 3506ms (Views: 3221.0ms | ActiveRecord: 0.0ms | Allocations: 43549)
+
+
+Started GET "/user/new" for ::1 at 2022-12-27 13:43:19 -0300
+Processing by UserController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering user/new.html.erb within layouts/application
+  Rendered user/new.html.erb within layouts/application (Duration: 91.4ms | Allocations: 6234)
+  Rendered layout layouts/application.html.erb (Duration: 124.4ms | Allocations: 8639)
+Completed 200 OK in 399ms (Views: 136.4ms | ActiveRecord: 17.9ms | Allocations: 15977)
+
+
+Started POST "/user" for ::1 at 2022-12-27 13:43:37 -0300
+Processing by UserController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "first_name"=>"Bruno", "last_name"=>"Toaldo", "age"=>"29", "password"=>"[FILTERED]", "admin"=>"1", "commit"=>"Cadastrar"}
+  [1m[36mUser Load (20.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`first_name` = 'Bruno' LIMIT 1[0m
+  ↳ app/controllers/user_controller.rb:29:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_controller.rb:42:in `create'
+  [1m[36mUser Create (17.9ms)[0m  [1m[32mINSERT INTO `users` (`first_name`, `last_name`, `age`, `password`, `admin`, `created_at`, `updated_at`) VALUES ('Bruno', 'Toaldo', 29, '123', TRUE, '2022-12-27 16:43:37.545971', '2022-12-27 16:43:37.545971')[0m
+  ↳ app/controllers/user_controller.rb:42:in `create'
+  [1m[36mTRANSACTION (6.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_controller.rb:42:in `create'
+Redirected to http://localhost:3000/
+Completed 302 Found in 124ms (ActiveRecord: 44.6ms | Allocations: 5612)
+
+
+Started GET "/" for ::1 at 2022-12-27 13:43:37 -0300
+Processing by UserController#home as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering user/home.html.erb within layouts/application
+  Rendered user/home.html.erb within layouts/application (Duration: 92.6ms | Allocations: 2369)
+  Rendered layout layouts/application.html.erb (Duration: 194.4ms | Allocations: 4757)
+Completed 200 OK in 207ms (Views: 198.0ms | ActiveRecord: 0.0ms | Allocations: 5109)
+
+
+Started GET "/user/login?first_name=Bruno&password=[FILTERED]&commit=Entrar" for ::1 at 2022-12-27 13:43:45 -0300
+Processing by UserController#login as HTML
+  Parameters: {"first_name"=>"Bruno", "password"=>"[FILTERED]", "commit"=>"Entrar"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`first_name` = 'Bruno' LIMIT 1[0m
+  ↳ app/controllers/user_controller.rb:135:in `login'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_controller.rb:141:in `login'
+  [1m[36mUserAuthenticated Create (20.4ms)[0m  [1m[32mINSERT INTO `user_authenticateds` (`id_user_authenticated`, `created_at`, `updated_at`) VALUES (52, '2022-12-27 16:43:45.653145', '2022-12-27 16:43:45.653145')[0m
+  ↳ app/controllers/user_controller.rb:141:in `login'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_controller.rb:141:in `login'
+Redirected to http://localhost:3000/user/52
+Completed 302 Found in 101ms (ActiveRecord: 29.1ms | Allocations: 5045)
+
+
+Started GET "/user/52" for ::1 at 2022-12-27 13:43:45 -0300
+Processing by UserController#show as HTML
+  Parameters: {"id"=>"52"}
+  [1m[36mUserAuthenticated Load (0.8ms)[0m  [1m[34mSELECT `user_authenticateds`.* FROM `user_authenticateds` ORDER BY `user_authenticateds`.`id` DESC LIMIT 1[0m
+  ↳ app/controllers/user_controller.rb:50:in `show'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 52 LIMIT 1[0m
+  ↳ app/controllers/user_controller.rb:54:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering user/show.html.erb within layouts/application
+  Rendered user/show.html.erb within layouts/application (Duration: 76.2ms | Allocations: 886)
+  Rendered layout layouts/application.html.erb (Duration: 107.8ms | Allocations: 3275)
+Completed 200 OK in 140ms (Views: 113.8ms | ActiveRecord: 1.6ms | Allocations: 5720)
+
+
+Started GET "/admin/products" for ::1 at 2022-12-27 13:43:50 -0300
+Processing by ProductsController#index as HTML
+  [1m[36mUserAuthenticated Load (0.5ms)[0m  [1m[34mSELECT `user_authenticateds`.* FROM `user_authenticateds` ORDER BY `user_authenticateds`.`id` DESC LIMIT 1[0m
+  ↳ app/controllers/products_controller.rb:5:in `index'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 52 LIMIT 1[0m
+  ↳ app/controllers/products_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (24.8ms)[0m  [1m[34mSELECT `products`.* FROM `products`[0m
+  ↳ app/views/products/index.html.erb:22
+  Rendered products/index.html.erb within layouts/application (Duration: 203.2ms | Allocations: 7301)
+  Rendered layout layouts/application.html.erb (Duration: 224.9ms | Allocations: 9777)
+Completed 200 OK in 297ms (Views: 213.2ms | ActiveRecord: 32.2ms | Allocations: 13457)
+
+
+Started GET "/user/52" for ::1 at 2022-12-27 13:43:55 -0300
+Processing by UserController#show as HTML
+  Parameters: {"id"=>"52"}
+  [1m[36mUserAuthenticated Load (0.6ms)[0m  [1m[34mSELECT `user_authenticateds`.* FROM `user_authenticateds` ORDER BY `user_authenticateds`.`id` DESC LIMIT 1[0m
+  ↳ app/controllers/user_controller.rb:50:in `show'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 52 LIMIT 1[0m
+  ↳ app/controllers/user_controller.rb:54:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering user/show.html.erb within layouts/application
+  Rendered user/show.html.erb within layouts/application (Duration: 1.7ms | Allocations: 495)
+  Rendered layout layouts/application.html.erb (Duration: 23.4ms | Allocations: 2765)
+Completed 200 OK in 42ms (Views: 25.8ms | ActiveRecord: 1.2ms | Allocations: 4340)
+
+
+Started GET "/user/logout" for ::1 at 2022-12-27 13:43:56 -0300
+Processing by UserController#logout as HTML
+  [1m[36mUserAuthenticated Load (0.6ms)[0m  [1m[34mSELECT `user_authenticateds`.* FROM `user_authenticateds` ORDER BY `user_authenticateds`.`id` DESC LIMIT 1[0m
+  ↳ app/controllers/user_controller.rb:147:in `logout'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_controller.rb:149:in `logout'
+  [1m[36mUserAuthenticated Update (3.8ms)[0m  [1m[33mUPDATE `user_authenticateds` SET `user_authenticateds`.`id_user_authenticated` = NULL, `user_authenticateds`.`updated_at` = '2022-12-27 16:43:56.821579' WHERE `user_authenticateds`.`id` = 33[0m
+  ↳ app/controllers/user_controller.rb:149:in `logout'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_controller.rb:149:in `logout'
+Redirected to http://localhost:3000/
+Completed 302 Found in 32ms (ActiveRecord: 6.6ms | Allocations: 3011)
+
+
+Started GET "/" for ::1 at 2022-12-27 13:43:56 -0300
+Processing by UserController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering user/home.html.erb within layouts/application
+  Rendered user/home.html.erb within layouts/application (Duration: 4.7ms | Allocations: 2335)
+  Rendered layout layouts/application.html.erb (Duration: 91.5ms | Allocations: 4610)
+Completed 200 OK in 186ms (Views: 134.2ms | ActiveRecord: 0.0ms | Allocations: 4872)
+
+
+Started GET "/user/new" for ::1 at 2022-12-27 13:43:59 -0300
+Processing by UserController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering user/new.html.erb within layouts/application
+  Rendered user/new.html.erb within layouts/application (Duration: 6.4ms | Allocations: 5118)
+  Rendered layout layouts/application.html.erb (Duration: 32.2ms | Allocations: 7394)
+Completed 200 OK in 42ms (Views: 34.5ms | ActiveRecord: 0.0ms | Allocations: 7678)
+
+
+Started POST "/user" for ::1 at 2022-12-27 13:44:11 -0300
+Processing by UserController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "first_name"=>"Julia", "last_name"=>"Mendes", "age"=>"24", "password"=>"[FILTERED]", "admin"=>"0", "commit"=>"Cadastrar"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`first_name` = 'Julia' LIMIT 1[0m
+  ↳ app/controllers/user_controller.rb:29:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_controller.rb:42:in `create'
+  [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO `users` (`first_name`, `last_name`, `age`, `password`, `admin`, `created_at`, `updated_at`) VALUES ('Julia', 'Mendes', 24, '123', FALSE, '2022-12-27 16:44:11.360907', '2022-12-27 16:44:11.360907')[0m
+  ↳ app/controllers/user_controller.rb:42:in `create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_controller.rb:42:in `create'
+Redirected to http://localhost:3000/
+Completed 302 Found in 28ms (ActiveRecord: 4.0ms | Allocations: 2740)
+
+
+Started GET "/" for ::1 at 2022-12-27 13:44:11 -0300
+Processing by UserController#home as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering user/home.html.erb within layouts/application
+  Rendered user/home.html.erb within layouts/application (Duration: 4.2ms | Allocations: 2320)
+  Rendered layout layouts/application.html.erb (Duration: 24.2ms | Allocations: 4599)
+Completed 200 OK in 32ms (Views: 26.9ms | ActiveRecord: 0.0ms | Allocations: 4862)
+
+
+Started GET "/user/login?first_name=Julia&password=[FILTERED]&commit=Entrar" for ::1 at 2022-12-27 13:44:16 -0300
+Processing by UserController#login as HTML
+  Parameters: {"first_name"=>"Julia", "password"=>"[FILTERED]", "commit"=>"Entrar"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`first_name` = 'Julia' LIMIT 1[0m
+  ↳ app/controllers/user_controller.rb:135:in `login'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_controller.rb:141:in `login'
+  [1m[36mUserAuthenticated Create (0.8ms)[0m  [1m[32mINSERT INTO `user_authenticateds` (`id_user_authenticated`, `created_at`, `updated_at`) VALUES (53, '2022-12-27 16:44:16.431358', '2022-12-27 16:44:16.431358')[0m
+  ↳ app/controllers/user_controller.rb:141:in `login'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_controller.rb:141:in `login'
+Redirected to http://localhost:3000/user/53
+Completed 302 Found in 28ms (ActiveRecord: 3.7ms | Allocations: 2485)
+
+
+Started GET "/user/53" for ::1 at 2022-12-27 13:44:16 -0300
+Processing by UserController#show as HTML
+  Parameters: {"id"=>"53"}
+  [1m[36mUserAuthenticated Load (0.5ms)[0m  [1m[34mSELECT `user_authenticateds`.* FROM `user_authenticateds` ORDER BY `user_authenticateds`.`id` DESC LIMIT 1[0m
+  ↳ app/controllers/user_controller.rb:50:in `show'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 53 LIMIT 1[0m
+  ↳ app/controllers/user_controller.rb:54:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering user/show.html.erb within layouts/application
+  Rendered user/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 290)
+  Rendered layout layouts/application.html.erb (Duration: 16.6ms | Allocations: 2557)
+Completed 200 OK in 32ms (Views: 18.5ms | ActiveRecord: 1.2ms | Allocations: 3968)
+
+
+Started GET "/user/logout" for ::1 at 2022-12-27 13:44:18 -0300
+Processing by UserController#logout as HTML
+  [1m[36mUserAuthenticated Load (0.6ms)[0m  [1m[34mSELECT `user_authenticateds`.* FROM `user_authenticateds` ORDER BY `user_authenticateds`.`id` DESC LIMIT 1[0m
+  ↳ app/controllers/user_controller.rb:147:in `logout'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_controller.rb:149:in `logout'
+  [1m[36mUserAuthenticated Update (1.1ms)[0m  [1m[33mUPDATE `user_authenticateds` SET `user_authenticateds`.`id_user_authenticated` = NULL, `user_authenticateds`.`updated_at` = '2022-12-27 16:44:19.062169' WHERE `user_authenticateds`.`id` = 34[0m
+  ↳ app/controllers/user_controller.rb:149:in `logout'
+  [1m[36mTRANSACTION (3.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_controller.rb:149:in `logout'
+Redirected to http://localhost:3000/
+Completed 302 Found in 36ms (ActiveRecord: 5.2ms | Allocations: 2753)
+
+
+Started GET "/" for ::1 at 2022-12-27 13:44:19 -0300
+Processing by UserController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering user/home.html.erb within layouts/application
+  Rendered user/home.html.erb within layouts/application (Duration: 3.7ms | Allocations: 2348)
+  Rendered layout layouts/application.html.erb (Duration: 42.7ms | Allocations: 4638)
+Completed 200 OK in 50ms (Views: 44.8ms | ActiveRecord: 0.0ms | Allocations: 4900)
+
+
+Started GET "/user/new" for ::1 at 2022-12-27 13:44:20 -0300
+Processing by UserController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering user/new.html.erb within layouts/application
+  Rendered user/new.html.erb within layouts/application (Duration: 6.6ms | Allocations: 5114)
+  Rendered layout layouts/application.html.erb (Duration: 35.3ms | Allocations: 7391)
+Completed 200 OK in 44ms (Views: 37.2ms | ActiveRecord: 0.0ms | Allocations: 7670)
+
+
