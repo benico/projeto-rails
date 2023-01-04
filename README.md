@@ -4,7 +4,7 @@
 *    - Nome;
 *    - Sigla.
 *   Cadastrar criptomoedas, com os seguintes atributos:
-*    -- Nome;
-*    -- Sigla;
-*    -- URL da imagem da criptomoeda;
-*    -- Associar a um tipo de mineração.
+*    - Nome;
+*    - Sigla;
+*    - URL da imagem da criptomoeda;
+*    - Associar a um tipo de mineração.
