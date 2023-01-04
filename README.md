@@ -1,10 +1,4 @@
-# Projeto-rails:
-  O Projeto "Crypto-Wallet" foi desenvolvido durante o curso de Rails, com as funções:
-*   Cadastrar tipos de mineração, com os seguintes atributos:
-*    - Nome;
-*    - Sigla.
-*   Cadastrar criptomoedas, com os seguintes atributos:
-*    - Nome;
-*    - Sigla;
-*    - URL da imagem da criptomoeda;
-*    - Associar a um tipo de mineração.
+# Projeto - Lista de compras:
+  O Projeto foi desenvolvido com intuito de simular uma lista de compras, onde:
+*  O Administrador tem a permissão para cadastrar produtos;
+*  E os usuaraios criam sua listas a partir desses produtos.
